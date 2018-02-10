@@ -1,0 +1,8 @@
+{
+  "name": "react-scheduler",
+  "version": "0",
+  "description": "HoC for scheduling and choreographing components",
+  "main": "index.js",
+  "author": "Christian Evans",
+  "license": "MIT"
+}
