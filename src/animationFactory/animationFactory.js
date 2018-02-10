@@ -15,7 +15,7 @@ export default function animationFactory(family) {
   }
 
   Animation.contextTypes = {
-    [family]: PropTypes.string.isRequired,
+    [family]: PropTypes.object.isRequired,
   };
 
   return Animation;
