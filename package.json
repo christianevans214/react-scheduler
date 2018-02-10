@@ -25,6 +25,7 @@
     "babel-plugin-transform-export-default": "^7.0.0-alpha.20",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "cz-conventional-changelog": "^2.1.0",
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
@@ -34,5 +35,10 @@
     "jest": "^22.2.2",
     "jest-cli": "^22.2.2",
     "regenerator-runtime": "^0.11.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
