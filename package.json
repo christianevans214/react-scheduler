@@ -4,7 +4,8 @@
   "description": "HoC for scheduling and choreographing components",
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "jest src"
   },
   "main": "index.js",
   "author": "Christian Evans",
@@ -19,6 +20,11 @@
     "@storybook/addons": "^3.3.12",
     "@storybook/react": "^3.3.12",
     "babel-core": "^6.26.0",
-    "jest": "^22.2.2"
+    "babel-jest": "^22.2.2",
+    "babel-plugin-transform-export-default": "^7.0.0-alpha.20",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "jest": "^22.2.2",
+    "regenerator-runtime": "^0.11.1"
   }
 }
