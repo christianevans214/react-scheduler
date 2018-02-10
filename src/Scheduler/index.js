@@ -1,1 +1,1 @@
-export default from './Scheduler';
+export { default } from './Scheduler';
