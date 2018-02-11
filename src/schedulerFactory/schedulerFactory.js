@@ -7,6 +7,7 @@ export default function schedulerFactory(family) {
       super(props);
       this.state = {
         currentKey: null,
+        keysPlayed: {},
       };
       this.currentAnimation = null; // setTimeout
     }
@@ -17,10 +18,16 @@ export default function schedulerFactory(family) {
 
     componentWillUpdate(nextProps) {
       if (!this.props.on && nextProps.on) {
-        this.executetTimeBlock(nextProps.timeline);
+        this.setState({
+          keysPlayed: {},
+        }, () => {
+          this.executetTimeBlock(nextProps.timeline);
+        });
       } else if (this.props.on && !nextProps.on) {
         clearTimeout(this.currentAnimation);
-        this.setState({ currentKey: null });
+        this.setState({
+          currentKey: null,
+        });
       }
     }
 
@@ -28,7 +35,8 @@ export default function schedulerFactory(family) {
       return {
         [family]: {
           timeline: this.props.timeline,
-          currentAnimation: this.props.timeline.find(({ key }) => this.state.currentKey === key),
+          currentAnimation: this.props.timeline.find(({ key }) => this.state.currentKey === key) || {},
+          keysPlayed: this.state.keysPlayed,
         },
       };
     }
@@ -36,7 +44,10 @@ export default function schedulerFactory(family) {
     executetTimeBlock(timeline) {
       const shiftedTimeline = timeline.slice();
       const { key, duration } = shiftedTimeline.shift();
-      this.setState({ currentKey: key });
+      this.setState({
+        currentKey: key,
+        keysPlayed: Object.assign({}, this.state.keysPlayed, { [key]: true }),
+      });
       this.currentAnimation = setTimeout(() => {
         if (shiftedTimeline.length) {
           this.executetTimeBlock(shiftedTimeline);
