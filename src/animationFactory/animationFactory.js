@@ -1,29 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-export default function animationFactory(family) {
-  class Animation extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {};
-    }
-
-    render() {
-      const familyContext = this.context[family];
-      const { children: renderChildren } = this.props;
-      const currentKey = familyContext.currentAnimation.key;
-      const hasPlayed = familyContext.keysPlayed[this.props.timelineKey];
-      return (
-        <React.Fragment>
-          {currentKey === this.props.timelineKey || hasPlayed ? renderChildren({}) : <div />}
-        </React.Fragment>
-      );
-    }
+export default function animationFactory(FamilyContext) {
+  function Animation(props) {
+    const familyContext = useContext(FamilyContext);
+    const { children: renderChildren } = props;
+    const currentKey = familyContext.currentAnimation.key;
+    const hasPlayed = familyContext.keysPlayed[props.timelineKey];
+    return (
+      <React.Fragment>
+        {currentKey === props.timelineKey || hasPlayed ? renderChildren({}) : null }
+      </React.Fragment>
+    );
   }
-
-  Animation.contextTypes = {
-    [family]: PropTypes.object.isRequired,
-  };
 
   Animation.defaultProps = {
     children: () => <div />,
@@ -33,9 +22,7 @@ export default function animationFactory(family) {
     children: PropTypes.func,
     timelineKey: PropTypes.string.isRequired,
   };
+
   return Animation;
 }
-
-
-
 

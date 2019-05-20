@@ -1,4 +1,6 @@
 {
   "presets": ["env", "react"],
-  "plugins": ["transform-export-default"]
+  "plugins": [
+    "transform-export-default"
+  ]
 }

@@ -5,7 +5,7 @@ import schedulerFactory from './schedulerFactory';
 export default function generateAnimationFamily(family) {
   const FamilyContext = React.createContext(null);
   return {
-    Animation: animationFactory(family),
+    Animation: animationFactory(FamilyContext),
     Scheduler: schedulerFactory(FamilyContext),
   };
 }
